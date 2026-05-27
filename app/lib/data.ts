@@ -1,4 +1,4 @@
-import { neon } from '@neondatabase/serverless';
+import postgres from 'postgres';
 import {
   CustomerField,
   CustomersTableType,
@@ -9,7 +9,7 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 
-const sql = neon(process.env.POSTGRES_URL!);
+const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
 export async function fetchRevenue() {
   try {

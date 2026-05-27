@@ -3,9 +3,10 @@
 import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { neon } from '@neondatabase/serverless';
+import postgres from 'postgres';
+
  
-const sql = neon(process.env.POSTGRES_URL!);
+const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
  
 const FormSchema = z.object({
   id: z.string(),
